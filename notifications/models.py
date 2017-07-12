@@ -14,6 +14,9 @@ class Device(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['-created']
+
     def save(self, *args, **kwargs):
         now = timezone.now()
         if not self.created:
@@ -25,5 +28,36 @@ class Device(models.Model):
 class Notification(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField()
-    title = models.TextField()
-    body = models.TextField()
+    title = models.TextField(blank=True)
+    body = models.TextField(blank=True)
+    icon = models.TextField(blank=True)
+    color = models.TextField(blank=True)
+    webhook = models.CharField(max_length=30, blank=True)
+    raw_data = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created']
+
+    def save(self, *args, **kwargs):
+        now = timezone.now()
+        if not self.created:
+            self.created = now
+        super(Notification, self).save(*args, **kwargs)
+
+
+class Filter(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=30, blank=True)
+    title = models.TextField(blank=True)
+    body = models.TextField(blank=True)
+    icon = models.TextField(blank=True)
+    color = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
