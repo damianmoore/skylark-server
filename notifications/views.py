@@ -2,6 +2,7 @@ import json
 from json.decoder import JSONDecodeError
 
 from django.http import JsonResponse
+from django.shortcuts import render_to_response
 from django.template import engines
 from django.views.decorators.csrf import csrf_exempt
 from pyfcm import FCMNotification
@@ -13,7 +14,7 @@ push_service = FCMNotification(api_key='AAAAyBt3BfQ:APA91bH3Sikwk947G8DAxqfin-vY
 
 
 @csrf_exempt
-def api_register(request):
+def api_register_firebase(request):
     request_data = json.loads(request.read().decode('utf-8'))
     if 'id' in request_data:
         device = Device.objects.get(id=request_data['id'])
@@ -25,7 +26,27 @@ def api_register(request):
     else:
         device = Device()
         device.name = request_data['name']
+        device.type = 'FB'
         device.save()
+    return JsonResponse({'id': device.id})
+
+
+@csrf_exempt
+def register_webpush(request):
+    return render_to_response('register_webpush.html', {})
+
+
+@csrf_exempt
+def api_register_webpush(request):
+    request_data = json.loads(request.read().decode('utf-8'))
+    print(request_data)
+    device = Device()
+    device.name = request_data['name']
+    device.type = 'WP'
+    device.web_push_endpoint = request_data['web_push_endpoint']
+    device.web_push_p256dh = request_data['web_push_p256dh']
+    device.web_push_auth = request_data['web_push_auth']
+    device.save()
     return JsonResponse({'id': device.id})
 
 

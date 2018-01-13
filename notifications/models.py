@@ -4,12 +4,23 @@ from django.db import models
 from django.utils import timezone
 
 
+DEVICE_TYPE_CHOICES = (
+    ('FI', 'Firebase'),
+    ('WP', 'Web Push'),
+)
+
+
 class Device(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=30)
+    type = models.CharField(max_length=2, choices=DEVICE_TYPE_CHOICES)
+    enabled = models.BooleanField(default=False)
     created = models.DateTimeField()
     last_active = models.DateTimeField()
-    firebase_token = models.CharField(max_length=30)
+    firebase_token = models.TextField(blank=True, null=True)
+    web_push_endpoint = models.TextField(blank=True, null=True)
+    web_push_p256dh = models.TextField(blank=True, null=True)
+    web_push_auth = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
