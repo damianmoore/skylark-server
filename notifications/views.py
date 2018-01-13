@@ -81,6 +81,7 @@ def webhook(request, name=None):
 
     if registration_ids:
         data_message = {
+            'id': notification.id,
             'title': notification.title,
             'body': notification.body,
             'icon': notification.icon,
