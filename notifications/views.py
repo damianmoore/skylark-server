@@ -30,12 +30,11 @@ def api_register(request):
 
 
 @csrf_exempt
-def api_notification(request):
-    request_data = json.loads(request.read().decode('utf-8'))
+def api_notification(request, id=None):
     response_data = {}
 
-    if 'id' in request_data:
-        notification = Notification.objects.get(id=request_data['id'])
+    if id:
+        notification = Notification.objects.get(id=id)
         response_data = {
             'id': notification.id,
             'title': notification.title,
@@ -45,6 +44,27 @@ def api_notification(request):
             'webhook': notification.webhook,
         }
 
+        for key, val in json.loads(notification.raw_data).items():
+            if not response_data.get(key):
+                response_data[key] = val
+
+    return JsonResponse(response_data)
+
+
+@csrf_exempt
+def api_notifications(request):
+    response_data = {}
+    results = []
+
+    for notification in Notification.objects.all().order_by('-created')[:10]:
+        results.append({
+            'id':       notification.id,
+            'created':  notification.created,
+            'webhook':  notification.webhook,
+            'title':    notification.title,
+        })
+
+    response_data['results'] = results
     return JsonResponse(response_data)
 
 
