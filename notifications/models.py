@@ -32,7 +32,7 @@ class Notification(models.Model):
     body = models.TextField(blank=True)
     icon = models.TextField(blank=True)
     color = models.TextField(blank=True)
-    webhook = models.CharField(max_length=30, blank=True)
+    webhook = models.CharField(max_length=30, blank=True, null=True)
     raw_data = models.TextField(blank=True)
 
     def __str__(self):

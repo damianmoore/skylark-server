@@ -1,22 +1,56 @@
 # Skylark
-*Phone notifications that are easy for developers to send from their scripts*
+
+<img src="https://epixstudios.co.uk/filer/canonical/1532274227/2/" alt="Skylark Logo" width="196px" height="170px">
+
+*Get notifications on your phone that are easily sent via HTTP requests*
+
 
 ## Running the server
 
 ### Docker
 
-Docker is the quickest way to get the server up and running. This will launch the server on localhost port 8000.
+Docker is the quickest way to get the server up and running. This will launch the server on [http://localhost:8000](http://localhost:8000).
 
     docker run -p 8000:80 damianmoore/skylark-server:latest
 
 ### Checkout Python
 
-If you want to help contribute or just want to avoid Docker then you can clone the repo, make virtual environment, install requirements and run the Django runserver. It will be listening on localhost port 8000.
+If you want to help contribute or just want to avoid Docker then you can clone the repo, make virtual environment, install requirements and run the Django runserver. It will be listening on [http://localhost:8000](http://localhost:8000).
 
     git clone https://github.com/damianmoore/skylark-server.git
     pipenv install
     pipenv shell
     ./manage.py runserver
+
+
+## Download and register the app
+
+There are not yet published versions in app stores as they are still being developed. You are welcome to check out and build the [Android app](https://github.com/damianmoore/skylark-android) yourself in the mean time.
+
+Once you have the app installed you will need to connect it to a server you have running this publicly available.
+
+Help would be much appreciated if you have iOS experience. We also aim to have a desktop, browser-based notification implementation.
+
+
+## Sending notifications
+
+Notification can be sent via HTTP POST or GET with data transported as JSON, POST data or URL encoding. Here are a couple of examples.
+
+### Python (requests library)
+
+    import requests
+    requests.post('http://localhost:8000/webhook/', params={
+        'title': 'Notification from Python',
+        'body': 'Sent with the requests library',
+        'color': '#ff700d',
+        'icon': 'https://www.python.org/static/opengraph-icon-200x200.png',
+    })
+
+### cURL
+
+    curl -X POST -H "Content-Type: applicatiotle": "Notification from cURL", "body": "Hello, World!", "color": "#093754", "icon": "http://i.imgur.com/7Ih60Gu.png"}' https://localhost:8000/webhook/
+
+<img src="https://epixstudios.co.uk/filer/canonical/1532296260/3/" alt="Screenshot of Python notification" width=50% /><img src="https://epixstudios.co.uk/filer/canonical/1532296260/4/" alt="Screenshot of cURL notification" width=50% />
 
 
 ## Logo requirements

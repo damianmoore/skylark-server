@@ -77,10 +77,15 @@ def webhook(request, name=None):
         request_data.update(request.POST)
 
     notification_data = {
-        'title': 'Unfiltered ' + name + ' notification',
+        'title': 'Unfiltered notification',
         'webhook': name,
         'raw_data': json.dumps(request_data),
     }
+    if name:
+        notification_data['title'] = 'Unfiltered {} notification'.format(name)
+    for key in ['title', 'body', 'icon', 'color']:
+        if key in request_data:
+            notification_data[key] = request_data[key]
 
     if name:
         try:
