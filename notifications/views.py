@@ -15,17 +15,22 @@ push_service = FCMNotification(api_key='AAAAyBt3BfQ:APA91bH3Sikwk947G8DAxqfin-vY
 @csrf_exempt
 def api_register(request):
     request_data = json.loads(request.read().decode('utf-8'))
+    print(request_data)
+    # import pdb; pdb.set_trace()
+
+    device = Device()
     if 'id' in request_data:
-        device = Device.objects.get(id=request_data['id'])
-        if 'firebase_token' in request_data:
-            device.firebase_token = request_data['firebase_token']
-        if 'name' in request_data:
-            device.name = request_data['name']
-        device.save()
-    else:
-        device = Device()
+        try:
+            device = Device.objects.get(id=request_data['id'])
+        except Device.DoesNotExist:
+            pass
+
+    if 'firebase_token' in request_data:
+        device.firebase_token = request_data['firebase_token']
+    if 'name' in request_data:
         device.name = request_data['name']
-        device.save()
+
+    device.save()
     return JsonResponse({'id': device.id})
 
 

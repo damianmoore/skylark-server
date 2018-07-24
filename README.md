@@ -12,7 +12,7 @@
 Docker is the quickest way to get the server up and running. This will launch the server on [http://localhost:8000](http://localhost:8000).
 
 ```shell
-    docker run -p 8000:80 damianmoore/skylark-server:latest
+docker run -p 8000:80 damianmoore/skylark-server:latest
 ```
 
 ### Checkout Python
@@ -20,10 +20,10 @@ Docker is the quickest way to get the server up and running. This will launch th
 If you want to help contribute or just want to avoid Docker then you can clone the repo, make virtual environment, install requirements and run the Django runserver. It will be listening on [http://localhost:8000](http://localhost:8000).
 
 ```shell
-    git clone https://github.com/damianmoore/skylark-server.git
-    pipenv install
-    pipenv shell
-    ./manage.py runserver
+git clone https://github.com/damianmoore/skylark-server.git
+pipenv install
+pipenv shell
+./manage.py runserver
 ```
 
 
@@ -43,22 +43,22 @@ Notification can be sent via HTTP POST or GET with data transported as JSON, POS
 ### Python (requests library)
 
 ```python
-    import requests
-    requests.post('http://localhost:8000/webhook/', params={
-        'title': 'Notification from Python',
-        'body': 'Sent with the requests library',
-        'color': '#ff700d',
-        'icon': 'https://www.python.org/static/opengraph-icon-200x200.png',
-    })
+import requests
+requests.post('http://localhost:8000/webhook/', params={
+    'title': 'Notification from Python',
+    'body': 'Sent with the requests library',
+    'color': '#3776ab',
+    'icon': 'https://www.python.org/static/opengraph-icon-200x200.png',
+})
 ```
 
 ### cURL
 
 ```shell
-    curl -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"title": "Notification from cURL", "body": "Hello, World!", "color": "#093754", "icon": "http://i.imgur.com/7Ih60Gu.png"}' \
-    http://localhost:8000
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"title": "Notification from cURL", "body": "Hello, World!", "color": "#ff9500", "icon": "http://i.imgur.com/7Ih60Gu.png"}' \
+http://localhost:8000/webhook/
 ```
 
 <img src="https://epixstudios.co.uk/filer/canonical/1532296260/3/" alt="Screenshot of Python notification" width=50% /><img src="https://epixstudios.co.uk/filer/canonical/1532296260/4/" alt="Screenshot of cURL notification" width=50% />
