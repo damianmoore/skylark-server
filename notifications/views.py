@@ -15,8 +15,6 @@ push_service = FCMNotification(api_key='AAAAyBt3BfQ:APA91bH3Sikwk947G8DAxqfin-vY
 @csrf_exempt
 def api_register(request):
     request_data = json.loads(request.read().decode('utf-8'))
-    print(request_data)
-    # import pdb; pdb.set_trace()
 
     device = Device()
     if 'id' in request_data:
