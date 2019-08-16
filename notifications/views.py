@@ -122,7 +122,7 @@ def webhook(request, name=None):
         }
         result = push_service.notify_multiple_devices(registration_ids=registration_ids, data_message=data_message)
 
-        if result[0]['success'] == 1:
+        if result['success'] == 1:
             status = 'OK'
 
     return JsonResponse({'status': status})
