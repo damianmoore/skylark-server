@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from notifications.views import api_register, api_notification, api_notifications, webhook
+from notifications.views import api_register, api_notification, api_notifications, webhook, index
 
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^api/notifications/', api_notifications),
     url(r'^webhook/(?P<name>[\w-]+)/$', webhook),
     url(r'^webhook/$', webhook),
+    url(r'^', index),
 ]

@@ -1,7 +1,7 @@
 import json
 from json.decoder import JSONDecodeError
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.template import engines
 from django.views.decorators.csrf import csrf_exempt
 from pyfcm import FCMNotification
@@ -10,6 +10,10 @@ from .models import Device, Notification, Filter
 
 
 push_service = FCMNotification(api_key='AAAAyBt3BfQ:APA91bH3Sikwk947G8DAxqfin-vYgLZOJT_4mnOOQ56-M3JqRadXXo_qpRdeFzchirBqZmPiB2nqNZLIc_rcvcSOJ4jPPkplfAmtI-mAYtuvfjkBqdwUpS1wQzjOgpc4qVrnbY2QjwxD')
+
+
+def index(request):
+    return HttpResponse('Skylark server')
 
 
 @csrf_exempt

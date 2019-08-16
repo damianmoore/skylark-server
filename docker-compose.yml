@@ -1,0 +1,28 @@
+version: '2'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+     - ./volumes/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  skylark:
+    container_name: skylark
+    build: .
+    ports:
+     - "8080:80"
+    links:
+     - mysql
+    volumes:
+     - ./skylark:/srv/skylark
+     - ./notifications:/srv/notifications
+    environment:
+      ENV: loc
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: skylark
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    depends_on:
+      - mysql
