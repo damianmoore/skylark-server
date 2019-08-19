@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 gunicorn = "==19.9.0"
 pyfcm = "==1.4.7"
-django = "==1.11.20"
+django = "==1.11.23"
 
 [dev-packages]
 
