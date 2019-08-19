@@ -109,7 +109,7 @@ def webhook(request, name=None):
     notification.save()
 
     status = 'ERROR'
-    registration_ids = [device.firebase_token for device in Device.objects.all()]
+    registration_ids = [device.firebase_token for device in Device.objects.filter(approved=True)]
 
     if registration_ids:
         data_message = {
