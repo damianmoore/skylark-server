@@ -6,7 +6,7 @@ from .models import Device, Notification, Filter
 
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created', 'last_active')
+    list_display = ('name', 'created', 'last_active', 'approved')
 
 
 @admin.register(Notification)

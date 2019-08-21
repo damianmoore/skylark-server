@@ -7,9 +7,11 @@ services:
      - ./volumes/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: skylark
 
   skylark:
     container_name: skylark
+    # image: damianmoore/skylark-server
     build: .
     ports:
      - "8080:80"
@@ -24,5 +26,7 @@ services:
       MYSQL_DATABASE: skylark
       MYSQL_USER: root
       MYSQL_PASSWORD: password
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: password
     depends_on:
       - mysql

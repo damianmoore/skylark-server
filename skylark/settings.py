@@ -80,16 +80,27 @@ WSGI_APPLICATION = 'skylark.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-db_name = os.path.join(BASE_DIR, 'db.sqlite3')
-if os.environ.get('PWD') == '/srv':
-    db_name = os.path.join('/data', 'db.sqlite3')
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': db_name,
+if os.environ.get('MYSQL_DATABASE'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('MYSQL_DATABASE', 'courchevel'),
+            'USER': os.environ.get('MYSQL_USER', 'root'),
+            'PASSWORD': os.environ.get('MYSQL_PASSWORD', ''),
+            'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
+            'PORT': '',
+        }
     }
-}
+else:
+    db_name = os.path.join(BASE_DIR, 'db.sqlite3')
+    if os.environ.get('PWD') == '/srv':
+        db_name = os.path.join('/data', 'db.sqlite3')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': db_name,
+        }
+    }
 
 
 # Password validation

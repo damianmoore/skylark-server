@@ -1,7 +1,7 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 RUN apt-get update && \
-    apt-get install -y locales python3-pip supervisor nginx-light && \
+    apt-get install -y locales python3-pip python3-dev default-libmysqlclient-dev supervisor nginx-light && \
     apt-get clean && \
         rm -rf /var/lib/apt/lists/* \
                /tmp/* \
@@ -24,11 +24,10 @@ COPY manage.py /srv/manage.py
 COPY skylark /srv/skylark
 COPY notifications /srv/notifications
 
-COPY run.sh /srv/run.sh
-COPY supervisord.conf /etc/supervisord.conf
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY system /srv/system
 
 RUN pipenv run python manage.py collectstatic --noinput --link
-CMD ./run.sh
+
+CMD ./system/run.sh
 
 EXPOSE 80

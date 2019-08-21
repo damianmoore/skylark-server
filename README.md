@@ -2,7 +2,7 @@
 
 <img src="https://epixstudios.co.uk/filer/canonical/1532274227/2/" alt="Skylark Logo" width="196px" height="170px">
 
-*Get notifications on your phone that are easily sent via HTTP requests*
+*Easily send notifications to your phone via HTTP*
 
 
 ## Running the server

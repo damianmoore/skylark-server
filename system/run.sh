@@ -7,4 +7,4 @@ pipenv run python /srv/manage.py migrate
 pipenv run python /srv/manage.py create_admin_from_env
 
 >&2 echo "Starting supervisor"
-supervisord -c /etc/supervisord.conf
+supervisord -c /srv/system/supervisord.conf

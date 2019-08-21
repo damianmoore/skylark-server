@@ -6,7 +6,7 @@ from django.db.utils import IntegrityError
 
 
 class Command(BaseCommand):
-    help = 'Creates admin user from ADMIN_USERNAME and ADMIN_PASSWORD environment variables'
+    help = 'Creates admin user from ADMIN_USER and ADMIN_PASSWORD environment variables'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,14 +14,14 @@ class Command(BaseCommand):
         self.username_field = self.UserModel._meta.get_field(self.UserModel.USERNAME_FIELD)
 
     def handle(self, *args, **options):
-        if os.environ.get('ADMIN_USERNAME') and os.environ.get('ADMIN_PASSWORD'):
+        if os.environ.get('ADMIN_USER') and os.environ.get('ADMIN_PASSWORD'):
             user_data = {}
-            user_data['username'] = os.environ.get('ADMIN_USERNAME')
+            user_data['username'] = os.environ.get('ADMIN_USER')
             user_data['password'] = os.environ.get('ADMIN_PASSWORD')
             user_data['email'] = 'webmaster@example.com'
             try:
                 self.UserModel._default_manager.create_superuser(**user_data)
             except IntegrityError:
-                user = self.UserModel._default_manager.get(username=os.environ.get('ADMIN_USERNAME'))
+                user = self.UserModel._default_manager.get(username=os.environ.get('ADMIN_USER'))
                 user.set_password(os.environ.get('ADMIN_PASSWORD'))
                 user.save()
