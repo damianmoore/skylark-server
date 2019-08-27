@@ -9,7 +9,7 @@ class Device(models.Model):
     name = models.CharField(max_length=30)
     created = models.DateTimeField()
     last_active = models.DateTimeField()
-    firebase_token = models.CharField(max_length=30)
+    firebase_token = models.CharField(max_length=200)
     approved = models.BooleanField(default=False)
 
     def __str__(self):
