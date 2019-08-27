@@ -63,7 +63,7 @@ def api_notifications(request):
     response_data = {}
     results = []
 
-    for notification in Notification.objects.all().order_by('-created')[:10]:
+    for notification in Notification.objects.all().order_by('-created')[:25]:
         results.append({
             'id':       notification.id,
             'created':  notification.created,
