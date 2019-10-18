@@ -29,9 +29,13 @@ pipenv shell
 
 ## Download and register the app
 
-There are not yet published versions in app stores as they are still being developed. You are welcome to check out and build the [Android app](https://github.com/damianmoore/skylark-android) yourself in the mean time.
+The latest Android release is available to download from [Google Play Store](https://play.google.com/store/apps/details?id=uk.co.epixstudios.skylark).
 
-Once you have the app installed you will need to connect it to a server you have running this publicly available.
+<a href='https://play.google.com/store/apps/details?id=uk.co.epixstudios.skylark&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="64px"/></a>
+
+You are welcome to clone and build the [Android app project](https://github.com/damianmoore/skylark-android) for yourself.
+
+Once you have the app installed you will need to connect it to the address of an instance of the server you have running (see above).
 
 Help would be much appreciated if you have iOS experience. We also aim to have a desktop, browser-based notification implementation.
 
