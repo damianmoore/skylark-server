@@ -1,6 +1,6 @@
 # Skylark
 
-<img src="https://epixstudios.co.uk/filer/canonical/1532274227/2/" alt="Skylark Logo" width="196px" height="170px">
+<img src="https://epixstudios.co.uk/filer/canonical/1532270627/2/" alt="Skylark Logo" width="196px" height="170px">
 
 *Easily send notifications to your phone via HTTP*
 
@@ -9,7 +9,7 @@
 
 ### Docker
 
-Docker is the quickest way to get the server up and running. This will launch the server on [http://localhost:8000](http://localhost:8000).
+Docker compose is the quickest way to get the server up and running. This will launch the server on [http://localhost:8000](http://localhost:8000).
 
 ```shell
 docker run -p 8000:80 damianmoore/skylark-server:latest
@@ -65,4 +65,4 @@ curl -X POST \
 http://localhost:8000/webhook/
 ```
 
-<img src="https://epixstudios.co.uk/filer/canonical/1532296260/3/" alt="Screenshot of Python notification" width=50% /><img src="https://epixstudios.co.uk/filer/canonical/1532296260/4/" alt="Screenshot of cURL notification" width=50% />
+<img src="https://epixstudios.co.uk/filer/canonical/1532292660/3/" alt="Screenshot of Python notification" width=50% /><img src="https://epixstudios.co.uk/filer/canonical/1532292660/4/" alt="Screenshot of cURL notification" width=50% />
